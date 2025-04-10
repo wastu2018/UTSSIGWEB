@@ -57,6 +57,28 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([-7.7704, 110.3771], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var fakultas = [
+            { nama: "Fakultas Teknik", lokasi: [-7.7704, 110.3771] },
+            { nama: "Fakultas Geografi", lokasi: [-7.7709, 110.3785] },
+            { nama: "Fakultas MIPA", lokasi: [-7.7722, 110.3777] },
+            { nama: "Fakultas Kedokteran", lokasi: [-7.7645, 110.3759] },
+            { nama: "Fakultas Ekonomika dan Bisnis", lokasi: [-7.7701, 110.3742] }
+        ];
+        
+        fakultas.forEach(function(fak) {
+            L.marker(fak.lokasi).addTo(map)
+                .bindPopup(fak.nama)
+                .openPopup();
+        });
+    </script>
+
     <script>
         function validatePassword() {
             let password = document.getElementById("password").value;
